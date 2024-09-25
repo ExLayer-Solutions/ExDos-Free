@@ -16,7 +16,7 @@ Plan **get_all_plans() {
     Map *json_plans = decode_json(raw_data->data);
 
     for(int i = 0; i < json_plans->idx; i++) {
-      ;  JsonField *field = (JsonField *)((Map *)json_plans)->keys[i];
+        JsonField *field = (JsonField *)((Map *)json_plans)->keys[i];
 
         if(field->STRUCTURE_PATH->CountChar(field->STRUCTURE_PATH, '/') > 1) {
             // new plan

@@ -2,7 +2,6 @@
 
 #include <clib/String/str.h>
 #include <clib/OS/cFile.h>
-#include "../headers/term.h"
 
 typedef struct Theme {
     str *Name;

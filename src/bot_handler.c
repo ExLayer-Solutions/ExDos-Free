@@ -48,6 +48,7 @@ void AuthenticateBot(void **args) {
     Bot *b = new_bot(sock);
     c->online_bots->Append(c->online_bots, sizeof(Bot), (void *)b);
     printf("[ + ] New bot connected: %d => %s....!\n", b->socket->SockFD, b->Nickname->data);
+    free(key);
 }
 
 str *generate_nickname(int length) {

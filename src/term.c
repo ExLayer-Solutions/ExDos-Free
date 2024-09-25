@@ -39,6 +39,7 @@ str *change_vars(char *data, User *u) {
         if(strstr(new->data, (char *)((Key *)((Map *)account_vars)->keys[i])->name))
             new->ReplaceString(new, (char *)((Key *)((Map *)account_vars)->keys[i])->name, (char *)((Key *)((Map *)account_vars)->keys[i])->value);
 
+    free(account_vars);
     return new;
 }
 
@@ -77,7 +78,6 @@ void place_text(Socket *client, str *row, str *column, str *text) {
 }
 
 
-
 void list_text(Socket *client, str *row, str *column, str *text) {
     int row_counter =  atoi(row->data);
     str *new_copy = string(text->data);
@@ -97,6 +97,9 @@ void list_text(Socket *client, str *row, str *column, str *text) {
         free(new);
         free(c);
     }
+
+    free(new_copy);
+    free(lines);
 }
 
 str *create_string(char **arr) {

@@ -22,7 +22,12 @@ Theme *RetrieveTheme(const str *name) {
     cFile *help = Openfile(help_path->data);
     help->Read(help);
 
-    t->Help = change_vars(help->data, NULL);
-    t->Layout = change_vars(layout->data, NULL);
+    t->Help = string(help->data);
+    t->Layout = string(layout->data);
+
+    free(theme_full_path);
+    free(layout);
+    free(help_path);
+    free(help);
     return t;
 }

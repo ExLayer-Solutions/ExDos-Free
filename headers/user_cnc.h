@@ -1,6 +1,8 @@
 #pragma once
 
 #include "__init__.h"
+#include "cogs.h"
+#include "term.h"
 #include "db/users.h"
 #include "db/plans.h"
 #include "bot_handler.h"

