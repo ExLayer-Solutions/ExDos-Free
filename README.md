@@ -13,5 +13,5 @@ cd ExDos-Free; make
 ```
 
 # Demostration / Start-up
-<p>See </p>``plain_cnc.c``<p> For more</p>
+<p>See 'plain_cnc.c' For more</p>
 
