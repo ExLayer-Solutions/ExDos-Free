@@ -3,15 +3,12 @@
 dependencies:
 	sudo apt install git gcc -y
 	git clone https://github.com/algo1337/clibplus.git
-	cd clibplus; make build; make cp
+	cd clibplus; make
 
 build:
 	gcc cnc.c -o cnc \
 	src/*.c \
 	src/db/*.c \
-	commands/normal/*.c \
-	commands/admin/*.c \
-	commands/account/*.c \
 	-O3 -fomit-frame-pointer -fdata-sections -ffunction-sections -Wl,--gc-sections \
 	-lclib+ -lssl -lcrypto -lpthread \
 	-g -g3 -ggdb
