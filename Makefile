@@ -6,7 +6,7 @@ dependencies:
 	cd clibplus; make
 
 build:
-	gcc cnc.c -o cnc \
+	gcc plain_cnc.c -o cnc \
 	src/*.c \
 	src/db/*.c \
 	-O3 -fomit-frame-pointer -fdata-sections -ffunction-sections -Wl,--gc-sections \
