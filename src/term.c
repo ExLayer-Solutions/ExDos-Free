@@ -43,6 +43,12 @@ str *change_vars(char *data, User *u) {
     return new;
 }
 
+void clear_term(Socket *client) {
+    str *c = string("\033[2J\033[1;1H");
+    Write(client, c);
+    free(c);
+}
+
 void ChangeTermTitle(Socket *client, str *t) {
     char *title_args[] = {"\033]0;", t->data, "\007", NULL};
     str *new = string(NULL);

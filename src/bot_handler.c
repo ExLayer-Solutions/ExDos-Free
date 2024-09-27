@@ -22,6 +22,8 @@ void AuthenticateBot(void **args) {
     Socket *sock    = (Socket *)args[1];
 
     GetClientIP(sock);
+    set_socket_timeout(sock, 0);
+
     Write(sock, string("Key Exchange\n"));
     str *key = Read(sock);
     if(!key || !key->data) {

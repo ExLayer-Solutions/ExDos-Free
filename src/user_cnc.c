@@ -134,8 +134,11 @@ void UserCLI(void *c, Socket *client, Client *u) {
             free(n);
             free(args);
         }
+        
+        str *query = cmd_input;
+        if(strstr(cmd_input->data, " "))
+            query = string(Args->arr[0]);
 
-        str *query = (Args->idx > 0 ? string(Args->arr[0]) : cmd_input);
         int chk = ((ExDos *)c)->cogs->FindCmd(((ExDos *)c)->cogs, query);
         if(chk >= 0) {
             Command *cmd = ((ExDos *)c)->cogs->GetCmd(((ExDos *)c)->cogs, chk);
@@ -146,16 +149,19 @@ void UserCLI(void *c, Socket *client, Client *u) {
                 ((ExDos *)c)->cogs->GetEvent(((ExDos *)c)->cogs, chk)->fn((ExDos *)c, u, cmd_input, Args);
         } else {
             chk = ((ExDos *)c)->cogs->FindEvent(((ExDos *)c)->cogs, INVALID_CMD_EVENT);
-            if(chk >= 0)
+            if(chk >= 0) {
                 ((ExDos *)c)->cogs->GetEvent(((ExDos *)c)->cogs, chk)->fn((ExDos *)c, u, cmd_input, Args);
-            else
-                Write(client, string("[ x ] Error, Invalid command...!\n"));
+            } else {
+                str *buf = string("[ x ] Error, Invalid command...!\n");
+                Write(client, buf);
+                free(buf);
+            }
         }
+
+        free(Args);
+        free(cmd_input);
 
         cmd_input = string(NULL);
         Args = Array(NULL);
-
-        Args->Kill(Args);
-        free(Args);
     }
 }

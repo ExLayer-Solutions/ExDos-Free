@@ -49,6 +49,7 @@ static const char *ACCOUNT_INFO[][2] = {
 };
 
 str     *change_vars(char *data, User *u);
+void    clear_term(Socket *client);
 void    ChangeTermTitle(Socket *client, str *t);
 void    changeTerminalSize(Socket *client, str *row, str *column);
 void    place_text(Socket *client, str *row, str *column, str *text);
